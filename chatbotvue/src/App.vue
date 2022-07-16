@@ -19,6 +19,7 @@
 </template>
 
 <script>
+  import todoTopics from "todo-topics";
   let menu = [{title: "Strona główna", url: "url"}, {title: "title2", url: "url"}, {title: "O nas", url: "url"}]
   let optionwidth = `${(100 / menu.length) - 5}%`
   export default {
