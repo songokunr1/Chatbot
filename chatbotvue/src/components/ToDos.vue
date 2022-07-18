@@ -1,7 +1,7 @@
 <template>
-    <div id="todoapp">
+    <div id="todosapp">
         <div class="block">
-            <div class="todolist" v-for="todolist in todolists" :key="todolist.id">
+            <div class="todolist" v-for="todolist in todolists" :key="todolist.id" @click="openlist(todolist.id - 1)">
                 {{todolist.title}}
             </div>
             <div class="addlist">
@@ -10,37 +10,56 @@
             </div>
         </div>
         <div class="block">
+            <ToDo :list="openedlist"/>
         </div>
     </div>
 </template>
 
 <script>
+    import ToDo from "./ToDo.vue";
+
+    let TodoLists = [
+                        { 
+                            title: "Przykładowa lista", 
+                            done: false, 
+                            content: 
+                            [
+                                {
+                                    title: "Test",
+                                    completed: false,
+                                    id: 1
+                                }
+                            ],
+                            id: 1
+                        }
+                    ]
+
     export default {
+        components: {
+            ToDo
+        },
         data() {
             return {
                 newlist: "",
-                todolists: 
-                [
-                    { 
-                        title: "Przykładowa lista", 
-                        done: false, 
-                        content: {},
-                        id: 1
-                    }
-                ]
+                todolists: TodoLists
+                ,
+                openedlist: TodoLists[0]
             }
         },
         methods: {
             addlist(){
-                this.todolists.push({ title: this.newlist, done:false, content: {}, id: (this.todolists.length + 1)})
+                TodoLists.push({ title: this.newlist, done:false, content: [], id: (this.todolists.length + 1)})
                 this.newlist = ""
+            },
+            openlist(id) {
+                this.openedlist = TodoLists[id]
             }
         }
     }
 </script>
 
 <style>
-    #todoapp{
+    #todosapp{
         min-height: 700px;
     }
     .block{
