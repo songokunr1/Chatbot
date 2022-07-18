@@ -11,6 +11,7 @@
       </div>
     </div>
     <div class="content">
+      <SideBar />
     </div>
     <div class="footer">
       <p>Wiktor Fajkowski 2022. | All rights reserved &copy;</p>
@@ -19,12 +20,12 @@
 </template>
 
 <script>
-  import todoTopics from "todo-topics";
+  import ToDos from "./components/ToDos.vue"
   let menu = [{title: "Strona główna", url: "url"}, {title: "title2", url: "url"}, {title: "O nas", url: "url"}]
-  let optionwidth = `${(100 / menu.length) - 5}%`
   export default {
     name: 'App',
     components: {
+      SideBar: ToDos
     },
     data() {
       return {
@@ -34,7 +35,7 @@
     computed: {
       cssVars() {
         return {
-          '--width': optionwidth
+          '--width': `${(100 / menu.length) - 5}%`
         }
       }
     }
@@ -46,6 +47,7 @@
 
   body{
     margin: 0 !important;
+    height: 100% !important;
   }
   #app {
     font-family: 'Roboto', sans-serif;
@@ -119,10 +121,11 @@
     height: 100px;
     background-color: #303030;
     text-align: center;
-    font-size: 30px;
+    font-size: calc(14px + 1vw);
   }
   .footer > p {
     padding:30px 0;
     color: white;
+    margin:0;
   }
 </style>
