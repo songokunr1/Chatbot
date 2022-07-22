@@ -21,7 +21,7 @@
 
 <script>
   import ToDos from "./components/ToDos.vue"
-  let menu = [{title: "Strona główna", url: "url"}, {title: "title2", url: "url"}, {title: "O nas", url: "url"}]
+  let menu = [{title: "Strona główna", url: "url"}, {title: "Nowości", url: "url"}, {title: "O nas", url: "url"}]
   export default {
     name: 'App',
     components: {

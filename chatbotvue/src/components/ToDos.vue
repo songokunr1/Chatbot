@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="block">
-            <ToDo :list="openedlist"/>
+            <ToDo :list="openedlist" @DoneClicked="done" @DelClicked="del" @AddClicked="add"/>
         </div>
     </div>
 </template>
@@ -53,6 +53,15 @@
             },
             openlist(id) {
                 this.openedlist = TodoLists[id]
+            },
+            done(id) {
+                this.openedlist.content[id].completed = true
+            },
+            del(id) {
+                this.openedlist.content.splice(id, 1)
+            },
+            add(title){
+                this.openedlist.content.push({title: title, completed: false, id: (this.openedlist.content.length + 1)})
             }
         }
     }
